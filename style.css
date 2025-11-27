@@ -451,7 +451,7 @@ p {
 .password-section {
     display: flex;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .password-input {
@@ -460,6 +460,19 @@ p {
     border: 2px solid var(--light);
     border-radius: 6px;
     font-size: 1rem;
+}
+
+.cloud-info {
+    background-color: rgba(181, 131, 141, 0.1);
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.cloud-info p {
+    margin: 0;
 }
 
 .history-content {

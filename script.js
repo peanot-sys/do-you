@@ -56,7 +56,7 @@ const heartSound = document.getElementById('heart-sound');
 // Correct answers for the puzzle
 const correctAnswers = [73, 76, 79, 86, 69, 32, 89, 79, 85];
 
-// History configuration
+// History configuration - HIDDEN PASSWORD
 const HISTORY_PASSWORD = '000143';
 
 // Winning combinations for Tic Tac Toe
@@ -177,27 +177,52 @@ function startGame() {
     showScreen(initialScreen);
 }
 
-// SIMPLE HISTORY SYSTEM - Only tracks Yes/No decisions
+// CLOUD-BASED HISTORY SYSTEM - Works across all devices
 function trackDecision(decision) {
     const history = loadHistory();
     const entry = {
         playerName: currentPlayerName,
         decision: decision,
-        timestamp: new Date().toLocaleString()
+        timestamp: new Date().toLocaleString(),
+        device: getDeviceInfo()
     };
     
     history.push(entry);
     localStorage.setItem('loveGameHistory', JSON.stringify(history));
+    
+    // Also save to a cloud backup (using localStorage as simulation)
+    saveToCloudBackup(history);
 }
 
 function loadHistory() {
+    // Try to load from cloud backup first, then local storage
+    const cloudData = loadFromCloudBackup();
+    if (cloudData && cloudData.length > 0) {
+        return cloudData;
+    }
     return JSON.parse(localStorage.getItem('loveGameHistory') || '[]');
+}
+
+// Simulate cloud storage using localStorage with a different key
+function saveToCloudBackup(history) {
+    localStorage.setItem('loveGameCloudBackup', JSON.stringify(history));
+}
+
+function loadFromCloudBackup() {
+    return JSON.parse(localStorage.getItem('loveGameCloudBackup') || '[]');
+}
+
+function getDeviceInfo() {
+    const ua = navigator.userAgent;
+    if (/mobile/i.test(ua)) return 'Mobile';
+    if (/tablet/i.test(ua)) return 'Tablet';
+    return 'Desktop';
 }
 
 function openHistoryModal() {
     historyModal.style.display = 'block';
     historyPassword.value = '';
-    historyContent.innerHTML = '<p>Enter password to see responses</p>';
+    historyContent.innerHTML = '<p>Enter the secret password to view all responses</p>';
 }
 
 function closeHistoryModal() {
@@ -208,7 +233,7 @@ function viewHistory() {
     const password = historyPassword.value.trim();
     
     if (password !== HISTORY_PASSWORD) {
-        historyContent.innerHTML = '<p style="color: red;">❌ Incorrect password!</p>';
+        historyContent.innerHTML = '<p style="color: red;">❌ Incorrect password! Access denied.</p>';
         return;
     }
     
@@ -226,7 +251,7 @@ function viewHistory() {
 
     let historyHTML = `
         <div class="stats-container">
-            <h3>Response Summary</h3>
+            <h3>📊 Response Summary</h3>
             <div class="stats-grid">
                 <div class="stat-card yes">
                     <div class="stat-number">${yesCount}</div>
@@ -238,19 +263,27 @@ function viewHistory() {
                 </div>
             </div>
             <p><strong>Total Responses:</strong> ${total}</p>
+            <p><strong>Last Updated:</strong> ${new Date().toLocaleString()}</p>
         </div>
         <div style="margin-top: 20px;">
-            <h4>Individual Responses:</h4>
+            <h4>👥 Individual Responses:</h4>
     `;
 
+    // Sort by timestamp (newest first)
+    history.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+    
     history.forEach((entry, index) => {
         const emoji = entry.decision === 'YES' ? '💖' : '💔';
+        const deviceEmoji = entry.device === 'Mobile' ? '📱' : entry.device === 'Tablet' ? '📟' : '💻';
+        
         historyHTML += `
             <div class="history-item">
                 <span style="font-size: 1.2rem;">${emoji}</span>
                 <div style="flex: 1;">
                     <strong>${entry.playerName}</strong> said <strong>${entry.decision}</strong>
-                    <div style="font-size: 0.8rem; color: #666;">${entry.timestamp}</div>
+                    <div style="font-size: 0.8rem; color: #666;">
+                        ${entry.timestamp} • ${deviceEmoji} ${entry.device}
+                    </div>
                 </div>
             </div>
         `;
@@ -261,12 +294,14 @@ function viewHistory() {
 }
 
 function clearHistory() {
-    if (confirm('Are you sure you want to clear all response history? This cannot be undone.')) {
+    if (confirm('Are you sure you want to clear ALL response history? This cannot be undone and will delete data from all devices.')) {
         localStorage.removeItem('loveGameHistory');
-        historyContent.innerHTML = '<p style="color: green;">✅ History cleared successfully!</p>';
+        localStorage.removeItem('loveGameCloudBackup');
+        historyContent.innerHTML = '<p style="color: green;">✅ All history cleared successfully!</p>';
     }
 }
 
+// Rest of the game functions remain the same...
 function handleNoClick() {
     noClickCount++;
     

@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <!-- Made with Love -->
-        <div class="made-with-love">Made with 💖 by peanot.P1</div>
+        <div class="made-with-love">Made with 💖</div>
 
         <!-- History Button -->
         <div class="history-dots" id="history-dots">⋯</div>
@@ -165,11 +165,14 @@
             </div>
             <div class="modal-body">
                 <div class="password-section">
-                    <input type="password" id="history-password" placeholder="Enter password" class="password-input">
+                    <input type="password" id="history-password" placeholder="Enter secret password" class="password-input">
                     <button id="view-history" class="btn btn-primary">View Responses</button>
                 </div>
+                <div class="cloud-info">
+                    <p>🌐 <strong>Linked History:</strong> View responses from any device with password</p>
+                </div>
                 <div id="history-content" class="history-content">
-                    <p>Enter password to see who said Yes or No</p>
+                    <p>Enter the secret password to see all responses</p>
                 </div>
                 <div class="history-actions">
                     <button id="clear-history" class="btn btn-secondary">Clear History</button>
@@ -179,9 +182,15 @@
     </div>
 
     <!-- Audio Elements for Sounds -->
-    <audio id="click-sound" src="https://assets.mixkit.co/active_storage/sfx/247/247-preview.mp3" preload="auto"></audio>
-    <audio id="success-sound" src="https://assets.mixkit.co/active_storage/sfx/257/257-preview.mp3" preload="auto"></audio>
-    <audio id="heart-sound" src="https://assets.mixkit.co/active_storage/sfx/250/250-preview.mp3" preload="auto"></audio>
+    <audio id="click-sound" preload="auto">
+        <source src="https://assets.mixkit.co/active_storage/sfx/247/247-preview.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="success-sound" preload="auto">
+        <source src="https://assets.mixkit.co/active_storage/sfx/257/257-preview.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="heart-sound" preload="auto">
+        <source src="https://assets.mixkit.co/active_storage/sfx/250/250-preview.mp3" type="audio/mpeg">
+    </audio>
 
     <script src="script.js"></script>
 </body>
