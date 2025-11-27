@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Confession Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Made with Love -->
+        <div class="made-with-love">Made with 💖 by peanot.P1</div>
+
+        <!-- History Button -->
+        <div class="history-dots" id="history-dots">⋯</div>
+
+        <!-- Login Screen -->
+        <div id="login-screen" class="screen active">
+            <h1>Welcome to My Heart ❤️</h1>
+            <p>Please enter your name to begin our journey</p>
+            <div class="login-form">
+                <input type="text" id="player-name" placeholder="Enter your beautiful name..." class="name-input">
+                <button id="start-game" class="btn btn-primary">Start the Magic ✨</button>
+            </div>
+        </div>
+
+        <!-- Initial Screen -->
+        <div id="initial-screen" class="screen">
+            <h1>Do you love me?</h1>
+            <div class="button-group">
+                <button id="yes-btn" class="btn btn-primary">Yes 💖</button>
+                <button id="no-btn" class="btn btn-secondary">No 💔</button>
+            </div>
+        </div>
+
+        <!-- Puzzle Screen -->
+        <div id="puzzle-screen" class="screen">
+            <h1>Love Puzzle Challenge</h1>
+            <p class="instructions">Solve these small puzzles. Each answer is a number. Write the numbers in order and then decode them.</p>
+            
+            <div class="puzzle-container">
+                <div class="puzzle-item">
+                    <p>1. What is 8 × 9 + 1?</p>
+                    <input type="number" id="q1" class="puzzle-input">
+                </div>
+                <div class="puzzle-item">
+                    <p>2. What is 19 × 4?</p>
+                    <input type="number" id="q2" class="puzzle-input">
+                </div>
+                <div class="puzzle-item">
+                    <p>3. What is 80 − 1?</p>
+                    <input type="number" id="q3" class="puzzle-input">
+                </div>
+                <div class="puzzle-item">
+                    <p>4. What is 43 + 43?</p>
+                    <input type="number" id="q4" class="puzzle-input">
+                </div>
+                <div class="puzzle-item">
+                    <p>5. What is 70 − 1?</p>
+                    <input type="number" id="q5" class="puzzle-input">
+                </div>
+                <div class="puzzle-item">
+                    <p>6. What is 4 × 8?</p>
+                    <input type="number" id="q6" class="puzzle-input">
+                </div>
+                <div class="puzzle-item">
+                    <p>7. What is 90 − 1?</p>
+                    <input type="number" id="q7" class="puzzle-input">
+                </div>
+                <div class="puzzle-item">
+                    <p>8. What is (5 × 16) − 1?</p>
+                    <input type="number" id="q8" class="puzzle-input">
+                </div>
+                <div class="puzzle-item">
+                    <p>9. What is 17 × 5?</p>
+                    <input type="number" id="q9" class="puzzle-input">
+                </div>
+            </div>
+            
+            <button id="check-answers" class="btn btn-primary">Check Answers</button>
+            <button id="show-hint" class="btn btn-secondary">Show Hint</button>
+            
+            <div id="result-message" class="result-message"></div>
+        </div>
+
+        <!-- Rock Paper Scissors Screen -->
+        <div id="rps-screen" class="screen">
+            <h1>Rock Paper Scissors Battle! 🎮</h1>
+            <p>Choose your move! First to 3 points wins!</p>
+            
+            <div class="rps-score">
+                <div class="score-player">
+                    <h3>You</h3>
+                    <div id="player-score" class="score">0</div>
+                </div>
+                <div class="score-vs">VS</div>
+                <div class="score-computer">
+                    <h3>Me</h3>
+                    <div id="computer-score" class="score">0</div>
+                </div>
+            </div>
+            
+            <div class="rps-choices">
+                <button class="rps-btn" data-choice="rock">✊ Rock</button>
+                <button class="rps-btn" data-choice="paper">✋ Paper</button>
+                <button class="rps-btn" data-choice="scissors">✌️ Scissors</button>
+            </div>
+            
+            <div class="rps-result">
+                <p id="rps-round-message"></p>
+                <p id="rps-message"></p>
+                <div id="rps-final-message"></div>
+            </div>
+        </div>
+
+        <!-- Tic Tac Toe Screen -->
+        <div id="tictactoe-screen" class="screen">
+            <h1>Tic Tac Toe Challenge</h1>
+            <p>Let's play Tic Tac Toe! You are X, I am O. You go first!</p>
+            
+            <div class="tictactoe-container">
+                <div class="tictactoe-board">
+                    <div class="cell" data-index="0"></div>
+                    <div class="cell" data-index="1"></div>
+                    <div class="cell" data-index="2"></div>
+                    <div class="cell" data-index="3"></div>
+                    <div class="cell" data-index="4"></div>
+                    <div class="cell" data-index="5"></div>
+                    <div class="cell" data-index="6"></div>
+                    <div class="cell" data-index="7"></div>
+                    <div class="cell" data-index="8"></div>
+                </div>
+            </div>
+            
+            <div class="tictactoe-score">
+                <div class="score-player">
+                    <h3>You (X)</h3>
+                    <div id="player-ttt-score" class="score">0</div>
+                </div>
+                <div class="score-vs">VS</div>
+                <div class="score-computer">
+                    <h3>Me (O)</h3>
+                    <div id="computer-ttt-score" class="score">0</div>
+                </div>
+            </div>
+            
+            <div class="tictactoe-result">
+                <p id="tictactoe-message"></p>
+            </div>
+        </div>
+
+        <!-- Final Decision Screen -->
+        <div id="final-screen" class="screen">
+            <h1>One Last Question</h1>
+            <p>After everything we've been through...</p>
+            <div class="final-choices">
+                <button id="final-yes" class="btn btn-primary">Yes, I want to be with you 💖</button>
+                <button id="final-friend" class="btn btn-secondary">Let's be friends 🤝</button>
+                <button id="final-no" class="btn btn-secondary">No, this is the end 💔</button>
+            </div>
+        </div>
+
+        <!-- End Screen -->
+        <div id="end-screen" class="screen">
+            <div id="end-message" class="end-message"></div>
+        </div>
+    </div>
+
+    <!-- History Modal -->
+    <div id="history-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Game History</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="password-section">
+                    <input type="password" id="history-password" placeholder="Enter password" class="password-input">
+                    <button id="view-history" class="btn btn-primary">View History</button>
+                </div>
+                <div id="history-content" class="history-content"></div>
+                <div class="history-actions">
+                    <button id="clear-history" class="btn btn-secondary">Clear History</button>
+                    <button id="export-history" class="btn btn-primary">Export as Text</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
