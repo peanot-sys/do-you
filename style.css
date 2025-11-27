@@ -26,7 +26,6 @@ body {
     justify-content: center;
     align-items: center;
     padding: 20px;
-    position: relative;
 }
 
 .container {
@@ -59,7 +58,6 @@ body {
     font-size: 12px;
     color: var(--primary);
     opacity: 0.7;
-    z-index: 10;
 }
 
 /* History Dots */
@@ -211,7 +209,7 @@ p {
 }
 
 /* Rock Paper Scissors Score */
-.rps-score, .tictactoe-score {
+.rps-score {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -465,7 +463,7 @@ p {
 }
 
 .history-content {
-    max-height: 300px;
+    max-height: 400px;
     overflow-y: auto;
     border: 1px solid var(--light);
     border-radius: 6px;
@@ -475,9 +473,12 @@ p {
 }
 
 .history-item {
-    padding: 8px;
+    padding: 12px;
     border-bottom: 1px solid var(--light);
-    font-size: 0.9rem;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .history-item:last-child {
@@ -488,6 +489,46 @@ p {
     display: flex;
     gap: 10px;
     justify-content: center;
+}
+
+/* Stats Styles */
+.stats-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, var(--light), var(--accent));
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.stat-card.yes {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+}
+
+.stat-card.no {
+    background: linear-gradient(135deg, #f44336, #da190b);
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    opacity: 0.9;
 }
 
 /* Animation for No button movement */
@@ -526,7 +567,7 @@ p {
         flex-direction: column;
     }
     
-    .rps-score, .tictactoe-score {
+    .rps-score {
         gap: 15px;
         padding: 15px;
     }
@@ -559,5 +600,9 @@ p {
     .btn {
         padding: 10px 20px;
         font-size: 1rem;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
     }
 }
