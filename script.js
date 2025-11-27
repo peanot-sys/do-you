@@ -267,7 +267,6 @@ function clearHistory() {
     }
 }
 
-// Rest of game functions (same as before)
 function handleNoClick() {
     noClickCount++;
     
@@ -327,7 +326,7 @@ function checkPuzzleAnswers() {
     
     if (allCorrect) {
         playSuccessSound();
-        const hindiShayari = "तुम मिली तो जिंदगी ने नया रंग पाला,\nतेरे होने से हर मौसम खिला-खिला सा लगा।\nतेरी हँसी मेरी सबसे बड़ी जीत है;\nतेरी खुशी से मेरी दुनिया रोशन है।";
+        const hindiShayari = "तुम मिली तो जिंदगी नया रंग पाला,\nतेरे होने से हर मौसम खिला-खिला सा लगा।\nतेरी हँसी मेरी सबसे बड़ी जीत है;\nतेरी खुशी से मेरी दुनिया रोशन है।";
         const englishTranslation = "When I found you, life took on a new color,\nWith you in it, every season feels blooming.\nYour laughter is my biggest victory;\nMy world is illuminated by your happiness.";
         
         resultMessage.innerHTML = `
